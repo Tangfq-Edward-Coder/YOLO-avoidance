@@ -1,0 +1,18 @@
+[Unit]
+Description=Real-time Visual Obstacle Avoidance System
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/YCTarget
+Environment="PATH=/home/pi/obstacle_avoidance_env/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/pi/obstacle_avoidance_env/bin/python /home/pi/YCTarget/src/main.py --config /home/pi/YCTarget/configs/system_config.yaml --left-camera 0 --right-camera 1
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

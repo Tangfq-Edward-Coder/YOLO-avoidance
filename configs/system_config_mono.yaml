@@ -1,0 +1,95 @@
+# 单目模式系统配置文件（Windows调试用）
+# 相机参数
+camera:
+  # 单目相机内参矩阵 [3x3]
+  left_camera_matrix: [[800, 0, 320], [0, 800, 240], [0, 0, 1]]
+  right_camera_matrix: [[800, 0, 320], [0, 800, 240], [0, 0, 1]]
+  # 畸变系数（单目模式下可以忽略）
+  left_dist_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  right_dist_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  # 立体校正参数（单目模式下不使用）
+  stereo:
+    R: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    T: [0.12, 0, 0]
+    R1: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    R2: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    P1: [[800, 0, 320, 0], [0, 800, 240, 0], [0, 0, 1, 0]]
+    P2: [[800, 0, 320, -96], [0, 800, 240, 0], [0, 0, 1, 0]]
+    Q: [[1, 0, 0, -320], [0, 1, 0, -240], [0, 0, 0, 800], [0, 0, -8.333333333333334, 0]]
+  # 图像分辨率
+  image_width: 640
+  image_height: 480
+  # 焦距（像素）
+  focal_length: 800
+  # 基线距离（米，单目模式下不使用）
+  baseline: 0.12
+
+# 模型路径配置
+models:
+  # YOLO模型路径（支持.pt, .onnx格式，Windows上不支持.hef）
+  yolo_model: "yolov8n.pt"  # 使用默认预训练模型
+  # U-Net模型路径（可选）
+  unet_model: "models/unet_obstacle.onnx"
+  # 输入图像尺寸
+  input_size: [640, 480]
+  # 置信度阈值
+  detection_confidence: 0.25  # 降低阈值以检测更多目标
+  # NMS阈值
+  nms_threshold: 0.4
+
+# 立体匹配参数（单目模式下不使用）
+stereo_matching:
+  min_disparity: 0
+  num_disparities: 64
+  block_size: 11
+  P1: 264
+  P2: 1056
+  disp12MaxDiff: 1
+  preFilterCap: 63
+  uniquenessRatio: 15
+  speckleWindowSize: 0
+  speckleRange: 0
+  mode: "SGBM"
+
+# 碰撞风险评估参数
+risk_assessment:
+  # 安全距离阈值（米）
+  safe_distance: 3.0
+  # 警告距离阈值（米）
+  warning_distance: 2.0
+  # 危险距离阈值（米）
+  danger_distance: 1.0
+  # 碰撞风险阈值（0-1）
+  risk_threshold: 0.7
+  # 刹车触发距离（米）
+  brake_distance: 0.8
+
+# 显示界面参数
+display:
+  # 窗口尺寸
+  window_width: 1280
+  window_height: 720
+  # 鸟瞰图范围（米）
+  bev_range: 10.0
+  # 自车位置（像素）
+  ego_position: [640, 360]
+  # 更新频率（FPS）
+  target_fps: 15
+
+# Hailo-8配置（Windows上不使用）
+hailo:
+  enabled: false
+  device_index: 0
+  batch_size: 1
+
+# 系统性能参数
+performance:
+  # 目标帧率
+  target_fps: 15
+  # 最大延迟（毫秒）
+  max_latency_ms: 150
+  # 是否启用多线程
+  multi_threading: true
+  # 线程数
+  num_threads: 4
+

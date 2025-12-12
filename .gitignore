@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+obstacle_avoidance_env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Models
+models/*.pt
+models/*.onnx
+models/*.hef
+!models/.gitkeep
+*.pt
+yolov8n.pt
+
+# Data
+data/
+datasets/
+calibration_images/
+test_data/
+*.jpg
+*.png
+*.mp4
+
+# Logs
+*.log
+logs/
+runs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config (sensitive)
+configs/local_config.yaml
+calibration_result.yaml
+
+# Build
+*.pyc
+.pytest_cache/
+

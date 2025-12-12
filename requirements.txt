@@ -1,0 +1,16 @@
+# 核心依赖
+ultralytics>=8.1.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+torch>=2.0.0
+pyyaml>=6.0
+pygame>=2.5.0
+
+# Hailo-8支持（可选，仅在树莓派+Hailo-8环境下需要）
+# hailo-platform>=4.15.0
+
+# ONNX支持（CPU模式需要）
+onnxruntime>=1.16.0
+
+# GStreamer支持（可选，用于高级流水线）
+# python-gst-1.0>=1.20.0
