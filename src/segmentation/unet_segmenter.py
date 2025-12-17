@@ -106,6 +106,18 @@ class UNetSegmenter:
             providers=['CPUExecutionProvider']
         )
     
+    def segment_full_image(self, image: np.ndarray) -> np.ndarray:
+        """
+        对整个图像进行场景分割（用于道路风险分析）
+        
+        Args:
+            image: 输入图像 (BGR格式)
+        
+        Returns:
+            场景分割掩膜（像素级分割图）
+        """
+        return self.segment(image, bbox=None)
+    
     def segment(
         self,
         image: np.ndarray,

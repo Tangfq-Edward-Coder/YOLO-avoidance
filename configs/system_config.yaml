@@ -35,8 +35,9 @@ camera:
 # 模型路径配置
 models:
   # YOLO模型路径（支持.pt, .onnx, .hef格式）
+  # 检测类别：person, car, bicycle
   yolo_model: "models/yolo_obstacle.hef"
-  # U-Net模型路径
+  # U-Net模型路径（场景分割：路面、车道线、天空等）
   unet_model: "models/unet_obstacle.hef"
   # 输入图像尺寸
   input_size: [640, 480]
@@ -44,6 +45,17 @@ models:
   detection_confidence: 0.5
   # NMS阈值
   nms_threshold: 0.4
+
+# 相机配置（支持4个摄像头：2个双目+2个环视）
+cameras:
+  # 前向双目相机
+  front_stereo:
+    left_id: 0
+    right_id: 1
+  # 环视相机（可选）
+  surround:
+    front_id: 2
+    rear_id: 3
 
 # 立体匹配参数
 stereo_matching:
@@ -72,6 +84,36 @@ risk_assessment:
   risk_threshold: 0.7
   # 刹车触发距离（米）
   brake_distance: 0.8
+
+# 道路风险预警参数
+road_risk_assessment:
+  # 中长期风险阈值
+  low_visibility_brightness_threshold: 80      # 低能见度亮度阈值
+  low_visibility_contrast_threshold: 30        # 低能见度对比度阈值
+  wet_road_texture_threshold: 0.3              # 路面湿滑纹理阈值
+  # 短期风险阈值
+  curve_curvature_threshold: 0.1               # 弯道曲率阈值
+  narrow_road_density_threshold: 0.4           # 狭窄路段密度阈值
+
+# TTC估算参数
+ttc_estimation:
+  # 默认自车速度（米/秒），如果未提供则使用此值
+  default_ego_speed: 5.0
+  # 历史记录大小
+  history_size: 10
+  # 计算TTC所需的最少帧数
+  min_frames_for_ttc: 2
+  # TTC警告阈值（秒）
+  warning_threshold: 5.0
+  # TTC紧急警报阈值（秒）
+  emergency_threshold: 3.0
+
+# 语音提示参数
+voice_alert:
+  # 是否启用语音提示
+  enabled: true
+  # 语言代码
+  language: "zh-CN"
 
 # 显示界面参数
 display:

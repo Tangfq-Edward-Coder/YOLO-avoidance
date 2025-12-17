@@ -1,6 +1,5 @@
 """显示模块"""
-from .bev_display import BEVDisplay
-from .opencv_display import OpenCVDisplay
+from .pyqt_display import PyQtDisplay
 
-__all__ = ['BEVDisplay', 'OpenCVDisplay']
+__all__ = ['PyQtDisplay']
 
